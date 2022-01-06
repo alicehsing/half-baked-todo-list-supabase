@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
@@ -28,7 +29,7 @@ export async function getTodos() {
 }
 
 export async function completeTodo(id) {
-    // find the and update (set complete to true), the todo that matches the correct id
+    // find and update (set complete to true) the todo that matches the correct id
     const response = await client
         .from('todos')
         .update({ complete: true })
@@ -37,12 +38,9 @@ export async function completeTodo(id) {
     return checkError(response);    
 }
 
-
-
 export async function getUser() {
     return client.auth.session();
 }
-
 
 export async function checkAuth() {
     const user = await getUser();

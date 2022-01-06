@@ -16,14 +16,12 @@ const todoForm = document.querySelector('.todo-form');
 const logoutButton = document.querySelector('#logout');
 const deleteButton = document.querySelector('.delete-button');
 
-
-
 todoForm.addEventListener('submit', async(e) => {
-    // on submit, create a todo item in supabase
+    // on submit
     e.preventDefault();
     const data = new FormData(todoForm);
     const todoItem = data.get('todo');
-
+    //create a todo item in supabase
     await createTodo(todoItem);
     // reset the form
     todoForm.reset();
@@ -36,7 +34,7 @@ async function displayTodos() {
     const todoList = await getTodos();
     
     todosEl.textContent = '';
-    // loop through the lists
+    // loop through the todo list array
     // display the list of todos
     for (let todo of todoList) {
         const todoItemEl = renderTodo(todo);
@@ -49,9 +47,7 @@ async function displayTodos() {
                 await displayTodos();
             });
         }
-        todosEl.append(todoItemEl);
     }
-    
 }
 
 // add an on load listener that fetches and displays todos on load
@@ -62,7 +58,6 @@ window.addEventListener('load', async() => {
 logoutButton.addEventListener('click', () => {
     logout();
 });
-
 
 deleteButton.addEventListener('click', async() => {
     // delete all todos
